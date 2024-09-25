@@ -1,0 +1,227 @@
+-------------------------------------------------------------ROLES----------------------------
+┌──(kali㉿MKR)-[~/ansible]
+└─$ ansible-galaxy role init first-role
+- Role first-role was created successfully
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ ls
+1q  first-role  inventory.ini  key.pem  playbook.yml
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cd first-role/
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ ls
+defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd..
+cd..: command not found
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ vi playbook.yml
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cat playbook.yml
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install apache httpd
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ vi playbook.yml
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cd first-role/
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ ls
+defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ vi tasks/
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ vi tasks
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd tasks/
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ ls
+main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml ^C
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ cat main.yml
+---
+# tasks file for first-role
+ - name: Install apache httpd
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+[1]+  Stopped                 vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd files/
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ ls
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ vi index.htm,
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ rm *
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ ls
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ vi index.html
+
+┌──(kali㉿MKR)-[~/ansible/first-role/files]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd tasks/
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ vi inventory.ini
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ ansible-playbook -i inventory.ini playbook.yml
+ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/home/kali/ansible/first-role/tasks/main.yml': line 8, column 23, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+- name:Copy file from kali to ec2
+  ansible.builtin.copy:
+                      ^ here
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cd '/home/kali/ansible/first-role/tasks/main.yml^C
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cd /home/kali/ansible/first-role/tasks/main.yml
+-bash: cd: /home/kali/ansible/first-role/tasks/main.yml: Not a directory
+
+┌──(kali㉿MKR)-[~/ansible]
+└─$ cd /home/kali/ansible/first-role/tasks
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+[2]+  Stopped                 vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi m`
+> ^C
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ cat main.yml
+# tasks file for first-role
+- name: Install apache httpd
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+- name:Copy file from kali to ec2
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: ~/sam
+    owner: root
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ vi main.yml
+
+┌──(kali㉿MKR)-[~/ansible/first-role/tasks]
+└─$ cd ..
+
+┌──(kali㉿MKR)-[~/ansible/first-role]
+└─$ cd ..
+┌──(kali㉿MKR)-[~/ansible]
+└─$ ansible-playbook -i inventory.ini playbook.yml
+
+PLAY [all] *************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+[WARNING]: Platform linux on host ubuntu@54.158.126.33 is using the discovered Python interpreter at
+/usr/bin/python3.12, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [ubuntu@54.158.126.33]
+
+TASK [first-role : Install apache httpd] *******************************************************************************
+ok: [ubuntu@54.158.126.33]
+
+TASK [first-role : Copy file from kali to ec2] *************************************************************************
+changed: [ubuntu@54.158.126.33]
+
+PLAY RECAP *************************************************************************************************************
+ubuntu@54.158.126.33       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+-------------------------------------------EC2 Server----------------------------------------------------------
+ubuntu@ip-10-0-0-14:~$ cd sam
+ubuntu@ip-10-0-0-14:~/sam$ ls
+book.yml  index.html
+ubuntu@ip-10-0-0-14:~/sam$ sudo systemctl status apache2
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2024-09-25 17:24:06 UTC; 4min 20s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 11553 (apache2)
+      Tasks: 55 (limit: 1130)
+     Memory: 5.3M (peak: 5.6M)
+        CPU: 175ms
+     CGroup: /system.slice/apache2.service
+             ├─11553 /usr/sbin/apache2 -k start
+             ├─11558 /usr/sbin/apache2 -k start
+             └─11559 /usr/sbin/apache2 -k start
+
+Sep 25 17:24:05 ip-10-0-0-14 apachectl[11436]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 10.0.0.>
+Sep 25 17:24:05 ip-10-0-0-14 apachectl[11541]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 10.0.0.>
+Sep 25 17:24:06 ip-10-0-0-14 systemd[1]: Started apache2.service - The Apache HTTP Server.
+lines 1-16/16 (END)

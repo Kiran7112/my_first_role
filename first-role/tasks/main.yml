@@ -1,0 +1,16 @@
+# tasks file for first-role
+- name: Install apache httpd
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Copy file from kali to ec2
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: /home/ubuntu/sam  # Replace with the correct destination path
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes  # For elevated privileges (if needed)
+
